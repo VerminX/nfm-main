@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Nashville Flower Market Design System - NFM Color Palette */
+    /* CONFIDENT. HAPPY & NFM-OBSESSED */
+    --background: 33 31% 94%;           /* Chic Linen #F4EFE9 */
+    --foreground: 244 59% 16%;          /* Soft Black #141141 */
+
+    --card: 0 0% 100%;
+    --card-foreground: 244 59% 16%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 244 59% 16%;
+
+    /* Energetic Hot Pink - Primary brand color */
+    --primary: 333 100% 62%;            /* #FF3E96 */
+    --primary-foreground: 0 0% 100%;
+
+    /* Pink Bucket Accent - soft pink secondary */
+    --secondary: 334 100% 89%;          /* #FFC7DF */
+    --secondary-foreground: 244 59% 16%;
+
+    --muted: 33 20% 92%;
+    --muted-foreground: 244 40% 40%;
+
+    /* Warm Coral - vibrant accent */
+    --accent: 358 100% 68%;             /* #FF5A5E */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 33 20% 88%;
+    --input: 33 20% 88%;
+    --ring: 333 100% 62%;
+
+    --radius: 0.75rem;
+    
+    /* NFM Brand Colors */
+    --nfm-hot-pink: 333 100% 62%;       /* #FF3E96 - Energetic Hot Pink */
+    --nfm-coral: 358 100% 68%;          /* #FF5A5E - Warm Coral */
+    --nfm-teal: 178 59% 27%;            /* #1C6C69 - Calm Blue-Green */
+    --nfm-black: 244 59% 16%;           /* #141141 - Soft Black */
+    --nfm-linen: 33 31% 94%;            /* #F4EFE9 - Chic Linen */
+    --nfm-gold: 43 53% 54%;             /* #C7A44B - Glam Accent */
+    --nfm-pink-bucket: 334 100% 89%;    /* #FFC7DF - Pink Bucket Accent */
+    
+    /* Legacy Brand Colors (for backward compatibility) */
+    --brand-cream: 33 31% 94%;
+    --brand-gold: 43 53% 54%;
+    --brand-terracotta: 333 100% 62%;
+    --brand-espresso: 244 59% 16%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(30 25% 95%) 0%, hsl(15 55% 88%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(30 18% 97%) 0%, hsl(30 25% 95%) 100%);
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 24px -4px hsl(25 18% 35% / 0.08);
+    --shadow-medium: 0 8px 32px -8px hsl(25 18% 35% / 0.12);
+    
+    /* Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 25 25% 20%;
+    --foreground: 30 20% 98%;
+
+    --card: 25 20% 18%;
+    --card-foreground: 30 20% 98%;
+
+    --popover: 25 20% 18%;
+    --popover-foreground: 30 20% 98%;
+
+    --primary: 30 20% 98%;
+    --primary-foreground: 25 18% 35%;
+
+    --secondary: 25 15% 30%;
+    --secondary-foreground: 30 20% 98%;
+
+    --muted: 25 15% 30%;
+    --muted-foreground: 30 15% 70%;
+
+    --accent: 15 80% 75%;
+    --accent-foreground: 25 25% 20%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 25 15% 30%;
+    --input: 25 15% 30%;
+    --ring: 15 80% 75%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
