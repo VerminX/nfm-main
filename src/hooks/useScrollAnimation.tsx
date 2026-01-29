@@ -42,9 +42,16 @@ export const useScrollAnimation = ({
       { threshold, rootMargin }
     );
 
-    observerRef.current.observe(element);
+    // Use requestAnimationFrame to ensure the browser has painted the initial
+    // "hidden" state before we start observing. Without this, if the element
+    // is already in the viewport on first page load, the observer fires before
+    // the first paint and the transition doesn't animate.
+    const rafId = requestAnimationFrame(() => {
+      observerRef.current?.observe(element);
+    });
 
     return () => {
+      cancelAnimationFrame(rafId);
       if (observerRef.current) {
         observerRef.current.disconnect();
       }
