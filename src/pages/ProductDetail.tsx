@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
+import { useScrollAnimation, getAnimationClasses, getStaggeredAnimationClasses } from "@/hooks/useScrollAnimation";
 import {
   Carousel,
   CarouselContent,
@@ -36,6 +37,9 @@ const ProductDetail = () => {
   const { handle } = useParams<{ handle: string }>();
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+
+  const productAnimation = useScrollAnimation();
+  const relatedAnimation = useScrollAnimation();
 
   const SHOPIFY_STORE_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}`;
 
@@ -170,9 +174,12 @@ const ProductDetail = () => {
 
   return (
     <PageLayout>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-12 py-8">
+      <div ref={productAnimation.ref} className="container mx-auto px-4 sm:px-6 lg:px-12 py-8">
         {/* Breadcrumb */}
-        <nav className="mb-8">
+        <nav
+          {...getAnimationClasses(productAnimation.isVisible, 0)}
+          className={`mb-8 ${getAnimationClasses(productAnimation.isVisible, 0).className}`}
+        >
           <Link
             to="/shop"
             className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
@@ -185,7 +192,10 @@ const ProductDetail = () => {
         {/* Product Grid */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Image Gallery */}
-          <div className="space-y-4">
+          <div
+            {...getAnimationClasses(productAnimation.isVisible, 100)}
+            className={`space-y-4 ${getAnimationClasses(productAnimation.isVisible, 100).className}`}
+          >
             {images.length > 1 ? (
               <Carousel className="w-full">
                 <CarouselContent>
@@ -223,7 +233,10 @@ const ProductDetail = () => {
           </div>
 
           {/* Product Info */}
-          <div className="space-y-6">
+          <div
+            {...getAnimationClasses(productAnimation.isVisible, 200)}
+            className={`space-y-6 ${getAnimationClasses(productAnimation.isVisible, 200).className}`}
+          >
             {/* Title & Price */}
             <div>
               <h1 className="font-serif text-3xl sm:text-4xl font-medium text-foreground">
@@ -342,16 +355,20 @@ const ProductDetail = () => {
 
         {/* Related Products */}
         {relatedProducts && relatedProducts.length > 0 && (
-          <section className="mt-16 pt-16 border-t border-border">
-            <h2 className="font-serif text-2xl sm:text-3xl font-light mb-8">
+          <section ref={relatedAnimation.ref} className="mt-16 pt-16 border-t border-border">
+            <h2
+              {...getAnimationClasses(relatedAnimation.isVisible, 0)}
+              className={`font-serif text-2xl sm:text-3xl font-light mb-8 ${getAnimationClasses(relatedAnimation.isVisible, 0).className}`}
+            >
               You May Also Like
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {relatedProducts.map((product) => (
+              {relatedProducts.map((product, index) => (
                 <Link
                   key={product.node.id}
                   to={`/shop/${product.node.handle}`}
-                  className="block"
+                  {...getStaggeredAnimationClasses(relatedAnimation.isVisible, index, 100, 75)}
+                  className={`block ${getStaggeredAnimationClasses(relatedAnimation.isVisible, index, 100, 75).className}`}
                 >
                   <Card className="group overflow-hidden bg-card border-border hover:shadow-lg transition-all duration-300">
                     <div className="aspect-square overflow-hidden bg-muted">
