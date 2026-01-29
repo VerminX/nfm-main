@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin, Navigation } from "lucide-react";
 import heroImage from "@/assets/hero-studio-welcome.webp";
+import { useScrollAnimation, getAnimationClasses } from "@/hooks/useScrollAnimation";
 
 export const Hero = () => {
+  const heroAnimation = useScrollAnimation();
+
   const handleGetDirections = () => {
     window.open('https://maps.google.com/?q=2615+Lebanon+Pike+Suite+B+Nashville+TN+37214', '_blank');
   };
@@ -21,46 +24,53 @@ export const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-12 py-12">
+      <div ref={heroAnimation.ref} className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-12 py-12">
         <div className="max-w-2xl space-y-6 sm:space-y-8">
           <div className="space-y-4">
             {/* Location Badge - First to appear */}
-            <div 
-              className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-accent/20 backdrop-blur-sm rounded-full opacity-0 animate-[fadeSlideUp_0.7s_ease-out_0.1s_forwards]"
+            <div
+              {...getAnimationClasses(heroAnimation.isVisible, 0)}
+              className={`inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-accent/20 backdrop-blur-sm rounded-full ${getAnimationClasses(heroAnimation.isVisible, 0).className}`}
             >
               <MapPin className="h-4 w-4 text-accent" />
               <span className="text-xs sm:text-sm font-medium text-foreground">2615 Lebanon Pike, Suite B • Nashville, TN</span>
             </div>
-            
+
             {/* Headline - Second to appear */}
-            <h1 
-              className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light leading-[1.1] text-foreground opacity-0 animate-[fadeSlideUp_0.7s_ease-out_0.2s_forwards]"
+            <h1
+              {...getAnimationClasses(heroAnimation.isVisible, 100)}
+              className={`font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light leading-[1.1] text-foreground ${getAnimationClasses(heroAnimation.isVisible, 100).className}`}
             >
               Come <span className="italic font-normal text-primary">See Us</span>
             </h1>
           </div>
 
           {/* Description - Third to appear */}
-          <p 
-            className="text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed opacity-0 animate-[fadeSlideUp_0.7s_ease-out_0.35s_forwards]"
+          <p
+            {...getAnimationClasses(heroAnimation.isVisible, 200)}
+            className={`text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed ${getAnimationClasses(heroAnimation.isVisible, 200).className}`}
           >
-            Step into our Nashville studio—where creativity blooms and every arrangement tells a story. 
+            Step into our Nashville studio—where creativity blooms and every arrangement tells a story.
             We're real people who love what we do, and we'd love to meet you.
           </p>
 
           {/* Studio Hours */}
-          <div className="opacity-0 animate-[fadeSlideUp_0.7s_ease-out_0.45s_forwards]">
+          <div
+            {...getAnimationClasses(heroAnimation.isVisible, 300)}
+            className={getAnimationClasses(heroAnimation.isVisible, 300).className}
+          >
             <p className="text-sm text-muted-foreground">
               <span className="font-medium text-foreground">Studio Hours:</span> Tue–Fri 9am–6pm | Sat 9am–12pm
             </p>
           </div>
 
           {/* Buttons - Fourth to appear */}
-          <div 
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 opacity-0 animate-[fadeSlideUp_0.7s_ease-out_0.55s_forwards]"
+          <div
+            {...getAnimationClasses(heroAnimation.isVisible, 400)}
+            className={`flex flex-col sm:flex-row gap-3 sm:gap-4 ${getAnimationClasses(heroAnimation.isVisible, 400).className}`}
           >
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-6 sm:px-8 transition-all duration-300 shadow-md hover:shadow-lg group"
               onClick={handleGetDirections}
             >
@@ -68,8 +78,8 @@ export const Hero = () => {
               Get Directions
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               variant="outline"
               className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-medium px-6 sm:px-8 transition-all duration-300"
               onClick={() => window.open('https://calendly.com/d/cxpt-5nc-btn?primary_color=ff3d94', '_blank')}
@@ -79,8 +89,9 @@ export const Hero = () => {
           </div>
 
           {/* Trust Indicators - Last to appear */}
-          <div 
-            className="flex flex-wrap items-center gap-4 sm:gap-6 pt-2 text-xs sm:text-sm text-muted-foreground opacity-0 animate-[fadeSlideUp_0.7s_ease-out_0.7s_forwards]"
+          <div
+            {...getAnimationClasses(heroAnimation.isVisible, 500)}
+            className={`flex flex-wrap items-center gap-4 sm:gap-6 pt-2 text-xs sm:text-sm text-muted-foreground ${getAnimationClasses(heroAnimation.isVisible, 500).className}`}
           >
             <div className="flex items-center gap-2">
               <span className="text-primary">★★★★★</span>
