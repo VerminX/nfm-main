@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { ArrowRight, MapPin, Navigation } from "lucide-react";
 import heroImage from "@/assets/hero-studio-welcome.webp";
 
@@ -12,24 +11,11 @@ export const Hero = () => {
     <section className="relative min-h-screen flex items-center overflow-hidden pt-16 lg:pt-20">
       {/* Background Video/Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        {/* Video background - uses poster image as fallback */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={heroImage}
-          className="w-full h-full object-cover"
-        >
-          {/* Video source can be added later */}
-          <source src="" type="video/mp4" />
-        </video>
-        {/* Fallback image for when video doesn't load */}
-        <ImageWithSkeleton
+        {/* Hero background image */}
+        <img
           src={heroImage}
           alt="Nashville Flower Market Studio"
-          className="absolute inset-0 w-full h-full object-cover"
-          containerClassName="absolute inset-0"
+          className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/50 to-transparent" />
       </div>
