@@ -38,7 +38,6 @@ const ProductDetail = () => {
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
-  const productAnimation = useScrollAnimation();
   const relatedAnimation = useScrollAnimation();
 
   const SHOPIFY_STORE_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}`;
@@ -174,12 +173,9 @@ const ProductDetail = () => {
 
   return (
     <PageLayout>
-      <div ref={productAnimation.ref} className="container mx-auto px-4 sm:px-6 lg:px-12 py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 py-8">
         {/* Breadcrumb */}
-        <nav
-          {...getAnimationClasses(productAnimation.isVisible, 0)}
-          className={`mb-8 ${getAnimationClasses(productAnimation.isVisible, 0).className}`}
-        >
+        <nav className="mb-8">
           <Link
             to="/shop"
             className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
@@ -192,10 +188,7 @@ const ProductDetail = () => {
         {/* Product Grid */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Image Gallery */}
-          <div
-            {...getAnimationClasses(productAnimation.isVisible, 100)}
-            className={`space-y-4 ${getAnimationClasses(productAnimation.isVisible, 100).className}`}
-          >
+          <div className="space-y-4">
             {images.length > 1 ? (
               <Carousel className="w-full">
                 <CarouselContent>
@@ -233,10 +226,7 @@ const ProductDetail = () => {
           </div>
 
           {/* Product Info */}
-          <div
-            {...getAnimationClasses(productAnimation.isVisible, 200)}
-            className={`space-y-6 ${getAnimationClasses(productAnimation.isVisible, 200).className}`}
-          >
+          <div className="space-y-6">
             {/* Title & Price */}
             <div>
               <h1 className="font-serif text-3xl sm:text-4xl font-medium text-foreground">
