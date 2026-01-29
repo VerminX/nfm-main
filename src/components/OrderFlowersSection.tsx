@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { ArrowRight, Truck, ExternalLink } from "lucide-react";
-import { useScrollAnimation, getAnimationClasses } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import deliveryHero from "@/assets/for-all-the-moments.png";
 import { SHOPIFY_STORE_PERMANENT_DOMAIN } from "@/lib/shopify";
 
@@ -14,39 +13,45 @@ export const OrderFlowersSection = () => {
       <div ref={animation.ref} className="container mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <div 
-            {...getAnimationClasses(animation.isVisible, 0)}
-            className={`inline-flex items-center gap-2 px-4 py-2 bg-brand-gold/20 rounded-full mb-4 ${getAnimationClasses(animation.isVisible, 0).className}`}
+          <div
+            className={`inline-flex items-center gap-2 px-4 py-2 bg-brand-gold/20 rounded-full mb-4 transition-all duration-700 ease-out ${
+              animation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
           >
             <Truck className="h-4 w-4 text-brand-espresso" />
             <span className="text-sm font-medium text-brand-espresso">Nashville's #1 Florist on DoorDash</span>
           </div>
-          <h2 
-            {...getAnimationClasses(animation.isVisible, 100)}
-            className={`font-serif text-3xl sm:text-4xl lg:text-5xl font-light mb-4 ${getAnimationClasses(animation.isVisible, 100).className}`}
+          <h2
+            className={`font-serif text-3xl sm:text-4xl lg:text-5xl font-light mb-4 transition-all duration-700 ease-out ${
+              animation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+            style={{ transitionDelay: "100ms" }}
           >
             Order <span className="italic text-primary">Flowers</span> for Delivery
           </h2>
-          <p 
-            {...getAnimationClasses(animation.isVisible, 200)}
-            className={`text-muted-foreground ${getAnimationClasses(animation.isVisible, 200).className}`}
+          <p
+            className={`text-muted-foreground transition-all duration-700 ease-out ${
+              animation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+            style={{ transitionDelay: "200ms" }}
           >
             Fresh blooms delivered to your door. Same-day delivery available in Nashville.
           </p>
         </div>
 
         {/* Single Large Arrangements Image */}
-        <div 
-          {...getAnimationClasses(animation.isVisible, 300)}
-          className={`max-w-4xl mx-auto mb-10 cursor-pointer group ${getAnimationClasses(animation.isVisible, 300).className}`}
+        <div
+          className={`max-w-4xl mx-auto mb-10 cursor-pointer group transition-all duration-700 ease-out ${
+            animation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          }`}
+          style={{ transitionDelay: "300ms" }}
           onClick={() => window.open(`${SHOPIFY_STORE_URL}/collections/all`, '_blank')}
         >
           <div className="overflow-hidden rounded-2xl shadow-lg">
-            <ImageWithSkeleton
+            <img
               src={deliveryHero}
               alt="For all the moments - birthdays, anniversaries, just because"
               className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
-              containerClassName="w-full"
             />
           </div>
           <div className="text-center mt-6">
@@ -59,9 +64,11 @@ export const OrderFlowersSection = () => {
         </div>
 
         {/* CTA Buttons */}
-        <div 
-          {...getAnimationClasses(animation.isVisible, 400)}
-          className={`flex flex-col sm:flex-row items-center justify-center gap-4 ${getAnimationClasses(animation.isVisible, 400).className}`}
+        <div
+          className={`flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 ease-out ${
+            animation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          }`}
+          style={{ transitionDelay: "400ms" }}
         >
           <Button
             size="lg"
