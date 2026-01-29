@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowRight, Truck, Search, Loader2, ExternalLink } from "lucide-react";
-import { useScrollAnimation, getAnimationClasses } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, getAnimationClasses, getStaggeredAnimationClasses } from "@/hooks/useScrollAnimation";
 import { 
   storefrontApiRequest, 
   STOREFRONT_PRODUCTS_QUERY, 
@@ -271,15 +271,16 @@ const Shop = () => {
             </div>
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map((product) => {
+              {filteredProducts.map((product, index) => {
                 const available = isProductAvailable(product);
                 return (
                   <Link
                     key={product.node.id}
                     to={`/shop/${product.node.handle}`}
-                    className="block"
+                    {...getStaggeredAnimationClasses(productsAnimation.isVisible, index, 0, 50)}
+                    className={`block ${getStaggeredAnimationClasses(productsAnimation.isVisible, index, 0, 50).className}`}
                   >
-                    <Card className="group overflow-hidden bg-card border-border hover:shadow-medium transition-all h-full">
+                    <Card className="group overflow-hidden bg-card border-border hover:shadow-medium transition-shadow h-full">
                       <div className="relative aspect-square overflow-hidden bg-muted">
                         <ImageWithSkeleton
                           src={getProductImage(product)}

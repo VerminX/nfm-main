@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { ArrowRight } from "lucide-react";
-import { useScrollAnimation, getAnimationClasses } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, getAnimationClasses, getStaggeredAnimationClasses } from "@/hooks/useScrollAnimation";
 import {
   storefrontApiRequest,
   STOREFRONT_COLLECTION_PRODUCTS_QUERY,
@@ -111,22 +111,17 @@ export const FeaturedProducts = ({
 
         {/* Products Grid */}
         {!isLoading && products.length > 0 && (
-          <div
-            {...getAnimationClasses(animation.isVisible, 100)}
-            className={`grid ${gridCols[columns]} gap-6 ${getAnimationClasses(animation.isVisible, 100).className}`}
-          >
+          <div className={`grid ${gridCols[columns]} gap-6`}>
             {products.map((product, index) => {
               const available = isProductAvailable(product);
               return (
                 <Link
                   key={product.node.id}
                   to={`/shop/${product.node.handle}`}
-                  className="block"
-                  style={{
-                    animationDelay: `${(index + 1) * 100}ms`,
-                  }}
+                  {...getStaggeredAnimationClasses(animation.isVisible, index, 100, 75)}
+                  className={`block ${getStaggeredAnimationClasses(animation.isVisible, index, 100, 75).className}`}
                 >
-                  <Card className="group overflow-hidden bg-card border-border hover:shadow-lg transition-all duration-300 h-full">
+                  <Card className="group overflow-hidden bg-card border-border hover:shadow-lg transition-shadow duration-300 h-full">
                     <div className="relative aspect-square overflow-hidden bg-muted">
                       <ImageWithSkeleton
                         src={getProductImage(product)}
