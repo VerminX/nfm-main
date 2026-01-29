@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { ArrowRight, HelpCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, getAnimationClasses, getStaggeredAnimationClasses } from "@/hooks/useScrollAnimation";
 import diyWeddingStudio from "@/assets/diy-wedding-studio.webp";
 import fullServiceWedding from "@/assets/full-service-wedding.webp";
 
@@ -52,12 +52,8 @@ export const WeddingExperienceSelector = () => {
           {experiences.map((experience, index) => (
             <Card
               key={experience.id}
-              className={`group overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-lg hover:border-primary/30 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{
-                transitionDelay: isVisible ? `${index * 150}ms` : "0ms",
-              }}
+              className={`group overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-lg hover:border-primary/30 ${getStaggeredAnimationClasses(isVisible, index, 0, 150).className}`}
+              {...getStaggeredAnimationClasses(isVisible, index, 0, 150)}
               onClick={() => navigate(experience.link)}
             >
               {/* Large Image at Top */}

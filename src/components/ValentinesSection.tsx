@@ -16,9 +16,8 @@ export const ValentinesSection = () => {
         <div className="container mx-auto">
           <Link
             to="/shop?collection=valentines-day-flowers"
-            className={`block rounded-2xl shadow-sm overflow-hidden transition-all duration-700 ease-out hover:shadow-lg hover:scale-[1.005] ${
-              bannerAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
+            {...getAnimationClasses(bannerAnimation.isVisible, 0)}
+            className={`block rounded-2xl shadow-sm overflow-hidden hover:shadow-lg hover:scale-[1.005] ${getAnimationClasses(bannerAnimation.isVisible, 0).className}`}
           >
             <img
               src={valentinesBanner}

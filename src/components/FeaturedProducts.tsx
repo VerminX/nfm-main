@@ -79,7 +79,7 @@ export const FeaturedProducts = ({
         {(title || collectionTitle) && (
           <div
             {...getAnimationClasses(animation.isVisible, 0)}
-            className="text-center mb-8"
+            className={`text-center mb-8 ${getAnimationClasses(animation.isVisible, 0).className}`}
           >
             {subtitle && (
               <p className="text-sm font-medium tracking-[0.2em] uppercase text-accent mb-2">
@@ -113,7 +113,7 @@ export const FeaturedProducts = ({
         {!isLoading && products.length > 0 && (
           <div
             {...getAnimationClasses(animation.isVisible, 100)}
-            className={`grid ${gridCols[columns]} gap-6`}
+            className={`grid ${gridCols[columns]} gap-6 ${getAnimationClasses(animation.isVisible, 100).className}`}
           >
             {products.map((product, index) => {
               const available = isProductAvailable(product);
@@ -166,7 +166,7 @@ export const FeaturedProducts = ({
         {showViewAll && !isLoading && products.length > 0 && (
           <div
             {...getAnimationClasses(animation.isVisible, 200)}
-            className="text-center mt-8"
+            className={`text-center mt-8 ${getAnimationClasses(animation.isVisible, 200).className}`}
           >
             <Button
               asChild

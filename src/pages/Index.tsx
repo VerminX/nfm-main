@@ -7,7 +7,7 @@ import { SocialProofToast } from "@/components/SocialProofToast";
 import { Button } from "@/components/ui/button";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { ArrowRight, MapPin } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, getAnimationClasses } from "@/hooks/useScrollAnimation";
 import rockyPhoto from "@/assets/rocky.png";
 
 const Index = () => {
@@ -20,9 +20,10 @@ const Index = () => {
       <OrderFlowersSection />
       
       {/* Visit Our Studio Section */}
-      <section 
+      <section
         ref={studioRef}
-        className={`py-16 sm:py-20 lg:py-24 bg-brand-cream/50 transition-all duration-700 ${studioVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        className={`py-16 sm:py-20 lg:py-24 bg-brand-cream/50 ${getAnimationClasses(studioVisible).className}`}
+        style={getAnimationClasses(studioVisible).style}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">

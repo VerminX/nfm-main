@@ -9,6 +9,7 @@ import arrangement1 from "@/assets/arrangement-1.webp";
 import arrangement2 from "@/assets/arrangement-2.webp";
 
 const CustomBouquets = () => {
+  const heroAnimation = useScrollAnimation();
   const featuresAnimation = useScrollAnimation();
   const deliveryAnimation = useScrollAnimation();
   const occasionsAnimation = useScrollAnimation();
@@ -31,19 +32,19 @@ const CustomBouquets = () => {
           <ImageWithSkeleton src={customMaking} alt="Custom flower bouquets" className="w-full h-full object-cover" containerClassName="w-full h-full" />
           <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40 lg:to-transparent" />
         </div>
-        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-12 py-12">
+        <div ref={heroAnimation.ref} className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-12 py-12">
           <div className="max-w-2xl space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-2 bg-accent/20 backdrop-blur-sm rounded-full opacity-0 animate-fade-in">
+            <div {...getAnimationClasses(heroAnimation.isVisible, 0)} className={`inline-flex items-center gap-2 px-3 py-2 bg-accent/20 backdrop-blur-sm rounded-full ${getAnimationClasses(heroAnimation.isVisible, 0).className}`}>
               <Truck className="h-4 w-4 text-accent" />
               <span className="text-xs sm:text-sm font-medium">Now on DoorDash</span>
             </div>
-            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light leading-tight opacity-0 animate-fade-in" style={{ animationDelay: '100ms' }}>
+            <h1 {...getAnimationClasses(heroAnimation.isVisible, 100)} className={`font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light leading-tight ${getAnimationClasses(heroAnimation.isVisible, 100).className}`}>
               Fresh Flowers, <span className="italic text-primary">Your Way</span>
             </h1>
-            <p className="text-base sm:text-lg text-muted-foreground opacity-0 animate-fade-in" style={{ animationDelay: '200ms' }}>
+            <p {...getAnimationClasses(heroAnimation.isVisible, 200)} className={`text-base sm:text-lg text-muted-foreground ${getAnimationClasses(heroAnimation.isVisible, 200).className}`}>
               Hand-pick premium blooms in our studio or have a beautiful arrangement delivered. Not cookie-cutter.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 opacity-0 animate-fade-in" style={{ animationDelay: '300ms' }}>
+            <div {...getAnimationClasses(heroAnimation.isVisible, 300)} className={`flex flex-col sm:flex-row gap-3 ${getAnimationClasses(heroAnimation.isVisible, 300).className}`}>
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground group" onClick={() => window.open('https://www.doordash.com/store/nashville-flower-market-nashville-30912690/43286355/', '_blank')}>
                 Order for Delivery <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>

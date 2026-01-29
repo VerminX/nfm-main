@@ -8,6 +8,7 @@ import arrangement1 from "@/assets/arrangement-1.webp";
 import { getCustomerTestimonials } from "@/data/testimonials";
 
 const JoyJars = () => {
+  const heroAnimation = useScrollAnimation();
   const useCasesAnimation = useScrollAnimation();
   const featuresAnimation = useScrollAnimation();
   const plansAnimation = useScrollAnimation();
@@ -34,19 +35,19 @@ const JoyJars = () => {
           <ImageWithSkeleton src={arrangement1} alt="Joy Jar" className="w-full h-full object-cover" containerClassName="w-full h-full" />
           <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40 lg:to-transparent" />
         </div>
-        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-12 py-12">
+        <div ref={heroAnimation.ref} className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-12 py-12">
           <div className="max-w-2xl space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-2 bg-accent/20 backdrop-blur-sm rounded-full opacity-0 animate-fade-in">
+            <div {...getAnimationClasses(heroAnimation.isVisible, 0)} className={`inline-flex items-center gap-2 px-3 py-2 bg-accent/20 backdrop-blur-sm rounded-full ${getAnimationClasses(heroAnimation.isVisible, 0).className}`}>
               <Truck className="h-4 w-4 text-accent" />
               <span className="text-xs sm:text-sm font-medium">DoorDash Delivery</span>
             </div>
-            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light leading-tight opacity-0 animate-fade-in" style={{ animationDelay: '100ms' }}>
+            <h1 {...getAnimationClasses(heroAnimation.isVisible, 100)} className={`font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light leading-tight ${getAnimationClasses(heroAnimation.isVisible, 100).className}`}>
               Fresh Flowers, <span className="italic text-primary">No Extra Stops</span>
             </h1>
-            <p className="text-base sm:text-lg text-muted-foreground opacity-0 animate-fade-in" style={{ animationDelay: '200ms' }}>
+            <p {...getAnimationClasses(heroAnimation.isVisible, 200)} className={`text-base sm:text-lg text-muted-foreground ${getAnimationClasses(heroAnimation.isVisible, 200).className}`}>
               Joy Jars are our signature arrangements in mason jars—delivered right to your door. Like ordering groceries, but flowers.
             </p>
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground group opacity-0 animate-fade-in" style={{ animationDelay: '300ms' }} onClick={() => window.open('https://www.doordash.com/store/nashville-flower-market-nashville-30912690/43286355/', '_blank')}>
+            <Button {...getAnimationClasses(heroAnimation.isVisible, 300)} size="lg" className={`bg-primary hover:bg-primary/90 text-primary-foreground group ${getAnimationClasses(heroAnimation.isVisible, 300).className}`} onClick={() => window.open('https://www.doordash.com/store/nashville-flower-market-nashville-30912690/43286355/', '_blank')}>
               Order a Joy Jar <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>

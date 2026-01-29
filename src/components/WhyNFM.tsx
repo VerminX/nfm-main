@@ -1,7 +1,6 @@
 import { Phone, Heart, Sparkles, Users } from "lucide-react";
-import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import arrangement1 from "@/assets/arrangement-1.webp";
-import { useScrollAnimation, getAnimationClasses, getStaggeredAnimationClasses } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, getAnimationClasses } from "@/hooks/useScrollAnimation";
 
 const pillars = [
   {
@@ -27,23 +26,22 @@ const pillars = [
 ];
 
 export const WhyNFM = () => {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
+  const animation = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section ref={ref} className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-background to-warm-cream">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+    <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-background to-warm-cream">
+      <div ref={animation.ref} className="container mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Image Side */}
-          <div 
-            className="relative order-2 lg:order-1"
-            {...getAnimationClasses(isVisible, 0)}
+          <div
+            {...getAnimationClasses(animation.isVisible, 0)}
+            className={`relative order-2 lg:order-1 ${getAnimationClasses(animation.isVisible, 0).className}`}
           >
             <div className="relative aspect-square rounded-2xl overflow-hidden shadow-medium max-w-md mx-auto lg:max-w-none">
-              <ImageWithSkeleton
+              <img
                 src={arrangement1}
                 alt="Bright spring bouquet with roses, ranunculus, and greenery"
                 className="w-full h-full object-cover"
-                containerClassName="w-full h-full"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 w-32 sm:w-48 h-32 sm:h-48 bg-blush-pink/40 rounded-full blur-3xl -z-10" />
@@ -52,27 +50,26 @@ export const WhyNFM = () => {
           {/* Content Side */}
           <div className="space-y-6 sm:space-y-8 order-1 lg:order-2">
             <div className="space-y-3 sm:space-y-4">
-              <p 
-                {...getAnimationClasses(isVisible, 100)}
-                className={`text-sm font-medium tracking-[0.2em] uppercase text-accent transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-                style={{ transitionDelay: '100ms' }}
+              <p
+                {...getAnimationClasses(animation.isVisible, 100)}
+                className={`text-sm font-medium tracking-[0.2em] uppercase text-accent ${getAnimationClasses(animation.isVisible, 100).className}`}
               >
                 The Nashville Difference
               </p>
-              <h2 
-                className={`font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-foreground leading-tight transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-                style={{ transitionDelay: '200ms' }}
+              <h2
+                {...getAnimationClasses(animation.isVisible, 200)}
+                className={`font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-foreground leading-tight ${getAnimationClasses(animation.isVisible, 200).className}`}
               >
                 More Than Flowers—{" "}
                 <span className="italic font-normal text-primary">
                   A True Partner
                 </span>
               </h2>
-              <p 
-                className={`text-base sm:text-lg text-muted-foreground leading-relaxed transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-                style={{ transitionDelay: '300ms' }}
+              <p
+                {...getAnimationClasses(animation.isVisible, 300)}
+                className={`text-base sm:text-lg text-muted-foreground leading-relaxed ${getAnimationClasses(animation.isVisible, 300).className}`}
               >
-                Other places hand you flowers and wish you luck. We walk alongside you from 
+                Other places hand you flowers and wish you luck. We walk alongside you from
                 the first question to the final petal—your studio, your expertise, your pace.
               </p>
             </div>
@@ -80,10 +77,10 @@ export const WhyNFM = () => {
             {/* Pillars Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {pillars.map((pillar, index) => (
-                <div 
-                  key={pillar.title} 
-                  className={`space-y-2 p-4 rounded-xl bg-card/50 hover:bg-card border border-transparent hover:border-border transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-                  style={{ transitionDelay: `${400 + index * 100}ms` }}
+                <div
+                  key={pillar.title}
+                  {...getAnimationClasses(animation.isVisible, 400 + index * 100)}
+                  className={`space-y-2 p-4 rounded-xl bg-card/50 hover:bg-card border border-transparent hover:border-border ${getAnimationClasses(animation.isVisible, 400 + index * 100).className}`}
                 >
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-accent/20 rounded-lg flex-shrink-0">
@@ -99,9 +96,9 @@ export const WhyNFM = () => {
             </div>
 
             {/* Stats */}
-            <div 
-              className={`grid grid-cols-3 gap-4 sm:gap-8 pt-6 sm:pt-8 border-t border-border transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-              style={{ transitionDelay: '800ms' }}
+            <div
+              {...getAnimationClasses(animation.isVisible, 800)}
+              className={`grid grid-cols-3 gap-4 sm:gap-8 pt-6 sm:pt-8 border-t border-border ${getAnimationClasses(animation.isVisible, 800).className}`}
             >
               <div className="text-center space-y-1">
                 <div className="text-2xl sm:text-3xl font-serif font-light text-primary">100+</div>

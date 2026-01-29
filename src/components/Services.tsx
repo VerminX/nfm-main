@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { Heart, Palette, Users, Gift, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, getAnimationClasses, getStaggeredAnimationClasses } from "@/hooks/useScrollAnimation";
 import bouquetIvoryEucalyptus from "@/assets/gallery/bouquet-ivory-eucalyptus.webp";
 import bouquetCoralPeach from "@/assets/gallery/bouquet-coral-peach.webp";
 import workshopAction from "@/assets/workshop-action.webp";
@@ -53,24 +53,24 @@ export const Services = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center space-y-3 sm:space-y-4 mb-10 sm:mb-16">
-          <p 
-            className={`text-sm font-medium tracking-[0.2em] uppercase text-accent transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-            style={{ transitionDelay: '0ms' }}
+          <p
+            className={`text-sm font-medium tracking-[0.2em] uppercase text-accent transition-all duration-700 ease-out ${getAnimationClasses(isVisible, 0).className}`}
+            {...getAnimationClasses(isVisible, 0)}
           >
             What We Do
           </p>
-          <h2 
-            className={`font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-foreground leading-tight transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-            style={{ transitionDelay: '100ms' }}
+          <h2
+            className={`font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-foreground leading-tight transition-all duration-700 ease-out ${getAnimationClasses(isVisible, 100).className}`}
+            {...getAnimationClasses(isVisible, 100)}
           >
             Four Ways to{" "}
             <span className="italic font-normal text-primary">Create Beauty</span>
           </h2>
-          <p 
-            className={`text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-            style={{ transitionDelay: '200ms' }}
+          <p
+            className={`text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto transition-all duration-700 ease-out ${getAnimationClasses(isVisible, 200).className}`}
+            {...getAnimationClasses(isVisible, 200)}
           >
-            Whether it's your wedding day or a random Tuesday, we've got a path that fits. 
+            Whether it's your wedding day or a random Tuesday, we've got a path that fits.
             Every option comes with expert guidance.
           </p>
         </div>
@@ -80,8 +80,8 @@ export const Services = () => {
           {services.map((service, index) => (
             <Card
               key={service.title}
-              className={`group overflow-hidden bg-card border-border hover:shadow-medium transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-              style={{ transitionDelay: `${300 + index * 150}ms` }}
+              className={`group overflow-hidden bg-card border-border hover:shadow-medium transition-all duration-700 ease-out ${getStaggeredAnimationClasses(isVisible, index, 300, 150).className}`}
+              {...getStaggeredAnimationClasses(isVisible, index, 300, 150)}
             >
               {/* Image */}
               <div className="relative h-48 sm:h-56 lg:h-64 overflow-hidden">
@@ -131,9 +131,9 @@ export const Services = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div 
-          className={`mt-12 sm:mt-16 text-center transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-          style={{ transitionDelay: '900ms' }}
+        <div
+          className={`mt-12 sm:mt-16 text-center transition-all duration-700 ease-out ${getAnimationClasses(isVisible, 900).className}`}
+          {...getAnimationClasses(isVisible, 900)}
         >
           <p className="text-muted-foreground mb-4 text-sm sm:text-base">
             Not sure which path is right for you? Let's figure it out together.

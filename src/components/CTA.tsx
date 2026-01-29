@@ -3,7 +3,7 @@ import { Phone, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { TrustBadge } from "@/components/TrustBadge";
 import { TestimonialSnippet } from "@/components/TestimonialSnippet";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, getAnimationClasses } from "@/hooks/useScrollAnimation";
 
 export const CTA = () => {
   const navigate = useNavigate();
@@ -18,9 +18,9 @@ export const CTA = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         <div className="max-w-3xl mx-auto text-center space-y-6 sm:space-y-8">
           {/* Icon */}
-          <div 
-            className={`flex justify-center transition-all duration-700 ease-out ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
-            style={{ transitionDelay: '0ms' }}
+          <div
+            {...getAnimationClasses(isVisible, 0)}
+            className={`flex justify-center ${getAnimationClasses(isVisible, 0).className}`}
           >
             <div className="p-3 sm:p-4 bg-background/80 backdrop-blur-sm rounded-full shadow-soft">
               <Phone className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
@@ -29,16 +29,16 @@ export const CTA = () => {
 
           {/* Heading */}
           <div className="space-y-3 sm:space-y-4">
-            <h2 
-              className={`font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light text-foreground leading-tight transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-              style={{ transitionDelay: '100ms' }}
+            <h2
+              {...getAnimationClasses(isVisible, 100)}
+              className={`font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light text-foreground leading-tight ${getAnimationClasses(isVisible, 100).className}`}
             >
               Let's Talk{" "}
               <span className="italic font-normal text-primary">Flowers</span>
             </h2>
-            <p 
-              className={`text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-              style={{ transitionDelay: '200ms' }}
+            <p
+              {...getAnimationClasses(isVisible, 200)}
+              className={`text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed ${getAnimationClasses(isVisible, 200).className}`}
             >
               We love a good conversation. Share your Pinterest board, your wildest floral dreams, 
               or just your questions—we're here to listen and make it happen.
@@ -46,9 +46,9 @@ export const CTA = () => {
           </div>
 
           {/* Testimonial Snippet */}
-          <div 
-            className={`max-w-md mx-auto transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-            style={{ transitionDelay: '300ms' }}
+          <div
+            {...getAnimationClasses(isVisible, 300)}
+            className={`max-w-md mx-auto ${getAnimationClasses(isVisible, 300).className}`}
           >
             <TestimonialSnippet
               quote="My Pinterest board came to life. They understood my vision better than I did."
@@ -59,17 +59,17 @@ export const CTA = () => {
           </div>
 
           {/* Trust Badge */}
-          <div 
-            className={`transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-            style={{ transitionDelay: '400ms' }}
+          <div
+            {...getAnimationClasses(isVisible, 400)}
+            className={getAnimationClasses(isVisible, 400).className}
           >
             <TrustBadge />
           </div>
 
           {/* CTA Buttons */}
-          <div 
-            className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-            style={{ transitionDelay: '500ms' }}
+          <div
+            {...getAnimationClasses(isVisible, 500)}
+            className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center ${getAnimationClasses(isVisible, 500).className}`}
           >
             <Button 
               size="lg" 
@@ -90,9 +90,9 @@ export const CTA = () => {
           </div>
 
           {/* Trust Indicators */}
-          <div 
-            className={`flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 pt-4 sm:pt-8 text-xs sm:text-sm text-muted-foreground transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-            style={{ transitionDelay: '600ms' }}
+          <div
+            {...getAnimationClasses(isVisible, 600)}
+            className={`flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 pt-4 sm:pt-8 text-xs sm:text-sm text-muted-foreground ${getAnimationClasses(isVisible, 600).className}`}
           >
             <div className="flex items-center gap-2">
               <span className="text-primary">★★★★★</span>

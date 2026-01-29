@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { Users, Wine, Sparkles, Heart, ArrowRight, Check, Calendar, ExternalLink, Mail, Phone, MapPin, Download } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, getAnimationClasses } from "@/hooks/useScrollAnimation";
 import workshopGroup from "@/assets/workshop-group.webp";
 import workshopAction from "@/assets/workshop-action.webp";
 import workshopColorfulGroup from "@/assets/gallery/workshop-colorful-group.webp";
@@ -79,7 +79,7 @@ const Workshops = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40 lg:to-transparent" />
         </div>
         <div ref={heroRef} className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-12 py-12">
-          <div className={`max-w-2xl space-y-6 transition-all duration-700 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className={`max-w-2xl space-y-6 ${getAnimationClasses(heroVisible).className}`} style={getAnimationClasses(heroVisible).style}>
             <p className="text-sm font-medium tracking-[0.2em] uppercase text-accent">Floral Workshops</p>
             <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light leading-tight">
               Floral Workshops That <span className="italic text-primary">Bring People Together</span>
@@ -105,9 +105,10 @@ const Workshops = () => {
       </section>
 
       {/* Public Workshops */}
-      <section 
+      <section
         ref={publicRef}
-        className={`py-16 sm:py-20 lg:py-24 bg-background transition-all duration-700 ${publicVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        className={`py-16 sm:py-20 lg:py-24 bg-background ${getAnimationClasses(publicVisible).className}`}
+        style={getAnimationClasses(publicVisible).style}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="max-w-4xl mx-auto">
@@ -144,9 +145,10 @@ const Workshops = () => {
       </section>
 
       {/* Photo Gallery */}
-      <section 
+      <section
         ref={galleryRef}
-        className={`py-16 sm:py-20 lg:py-24 bg-brand-cream/50 transition-all duration-700 ${galleryVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        className={`py-16 sm:py-20 lg:py-24 bg-brand-cream/50 ${getAnimationClasses(galleryVisible).className}`}
+        style={getAnimationClasses(galleryVisible).style}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="text-center mb-10">
@@ -173,9 +175,10 @@ const Workshops = () => {
       </section>
 
       {/* Private DIY Workshops - In Studio */}
-      <section 
+      <section
         ref={privateRef}
-        className={`py-16 sm:py-20 lg:py-24 bg-background transition-all duration-700 ${privateVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        className={`py-16 sm:py-20 lg:py-24 bg-background ${getAnimationClasses(privateVisible).className}`}
+        style={getAnimationClasses(privateVisible).style}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -227,9 +230,10 @@ const Workshops = () => {
       </section>
 
       {/* DIY On-The-Go */}
-      <section 
+      <section
         ref={onTheGoRef}
-        className={`py-16 sm:py-20 lg:py-24 bg-brand-gold/10 transition-all duration-700 ${onTheGoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        className={`py-16 sm:py-20 lg:py-24 bg-brand-gold/10 ${getAnimationClasses(onTheGoVisible).className}`}
+        style={getAnimationClasses(onTheGoVisible).style}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -286,9 +290,10 @@ const Workshops = () => {
       </section>
 
       {/* Pricing */}
-      <section 
+      <section
         ref={pricingRef}
-        className={`py-16 sm:py-20 lg:py-24 bg-background transition-all duration-700 ${pricingVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        className={`py-16 sm:py-20 lg:py-24 bg-background ${getAnimationClasses(pricingVisible).className}`}
+        style={getAnimationClasses(pricingVisible).style}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="max-w-3xl mx-auto text-center">
@@ -314,9 +319,10 @@ const Workshops = () => {
       </section>
 
       {/* Why Book With Us */}
-      <section 
+      <section
         ref={whyRef}
-        className={`py-16 sm:py-20 lg:py-24 bg-brand-cream/50 transition-all duration-700 ${whyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        className={`py-16 sm:py-20 lg:py-24 bg-brand-cream/50 ${getAnimationClasses(whyVisible).className}`}
+        style={getAnimationClasses(whyVisible).style}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="max-w-4xl mx-auto">
@@ -366,9 +372,10 @@ const Workshops = () => {
       </section>
 
       {/* Final CTA */}
-      <section 
+      <section
         ref={ctaRef}
-        className={`py-16 sm:py-20 lg:py-24 bg-brand-espresso text-primary-foreground transition-all duration-700 ${ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        className={`py-16 sm:py-20 lg:py-24 bg-brand-espresso text-primary-foreground ${getAnimationClasses(ctaVisible).className}`}
+        style={getAnimationClasses(ctaVisible).style}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-12 text-center">
           <div className="max-w-2xl mx-auto space-y-6">

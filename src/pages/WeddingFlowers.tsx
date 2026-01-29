@@ -11,6 +11,7 @@ import arrangement2 from "@/assets/arrangement-2.webp";
 
 const WeddingFlowers = () => {
   const navigate = useNavigate();
+  const heroAnimation = useScrollAnimation();
   const fearsAnimation = useScrollAnimation();
   const tiersAnimation = useScrollAnimation();
   const processAnimation = useScrollAnimation();
@@ -87,23 +88,23 @@ const WeddingFlowers = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40 lg:to-transparent" />
         </div>
 
-        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-12 py-12">
+        <div ref={heroAnimation.ref} className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-12 py-12">
           <div className="max-w-2xl space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-2 bg-accent/20 backdrop-blur-sm rounded-full opacity-0 animate-fade-in">
+            <div {...getAnimationClasses(heroAnimation.isVisible, 0)} className={`inline-flex items-center gap-2 px-3 py-2 bg-accent/20 backdrop-blur-sm rounded-full ${getAnimationClasses(heroAnimation.isVisible, 0).className}`}>
               <Heart className="h-4 w-4 text-accent" />
               <span className="text-xs sm:text-sm font-medium">Your Flower Bestie Awaits</span>
             </div>
-            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light leading-tight opacity-0 animate-fade-in" style={{ animationDelay: '100ms' }}>
+            <h1 {...getAnimationClasses(heroAnimation.isVisible, 100)} className={`font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light leading-tight ${getAnimationClasses(heroAnimation.isVisible, 100).className}`}>
               Worried Your Flowers Won't Look Like{" "}
               <span className="italic text-primary">Pinterest</span>?
             </h1>
-            <p className="text-base sm:text-lg text-muted-foreground opacity-0 animate-fade-in" style={{ animationDelay: '200ms' }}>
+            <p {...getAnimationClasses(heroAnimation.isVisible, 200)} className={`text-base sm:text-lg text-muted-foreground ${getAnimationClasses(heroAnimation.isVisible, 200).className}`}>
               We've got you. Your Stem Stylist guides you from first question to final bouquet toss.
             </p>
             <Button
+              {...getAnimationClasses(heroAnimation.isVisible, 300)}
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground group opacity-0 animate-fade-in"
-              style={{ animationDelay: '300ms' }}
+              className={`bg-primary hover:bg-primary/90 text-primary-foreground group ${getAnimationClasses(heroAnimation.isVisible, 300).className}`}
               onClick={() => window.open('https://calendly.com/d/cxpt-5nc-btn?primary_color=ff3d94', '_blank')}
             >
               Start Your Consultation
