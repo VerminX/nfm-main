@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ImageWithSkeleton } from "@/components/ui/image-with-skeleton";
 import { Menu, X, Phone, Mail, ChevronDown, ExternalLink } from "lucide-react";
 import logoEspresso from "@/assets/logo-espresso.png";
 import { SHOPIFY_STORE_PERMANENT_DOMAIN } from "@/lib/shopify";
@@ -68,11 +67,10 @@ export const Navigation = () => {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
-              <ImageWithSkeleton
+              <img
                 src={logoEspresso}
                 alt="Nashville Flower Market"
                 className="h-10 sm:h-12 w-auto"
-                containerClassName="h-10 sm:h-12"
               />
             </Link>
 
