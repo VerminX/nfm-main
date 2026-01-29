@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface UseScrollAnimationOptions {
   threshold?: number;
@@ -11,19 +11,29 @@ export const useScrollAnimation = ({
   triggerOnce = true,
   rootMargin = "0px",
 }: UseScrollAnimationOptions = {}) => {
-  const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [element, setElement] = useState<HTMLDivElement | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  // Callback ref that triggers when the element is attached/detached
+  const ref = useCallback((node: HTMLDivElement | null) => {
+    setElement(node);
+  }, []);
 
   useEffect(() => {
-    const element = ref.current;
     if (!element) return;
 
-    const observer = new IntersectionObserver(
+    // Cleanup any existing observer
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    observerRef.current = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          if (triggerOnce) {
-            observer.unobserve(element);
+          if (triggerOnce && observerRef.current) {
+            observerRef.current.unobserve(element);
           }
         } else if (!triggerOnce) {
           setIsVisible(false);
@@ -32,10 +42,14 @@ export const useScrollAnimation = ({
       { threshold, rootMargin }
     );
 
-    observer.observe(element);
+    observerRef.current.observe(element);
 
-    return () => observer.disconnect();
-  }, [threshold, triggerOnce, rootMargin]);
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, [element, threshold, triggerOnce, rootMargin]);
 
   return { ref, isVisible };
 };
